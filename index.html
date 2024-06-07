@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport">
+    <title>Portfolio de Simulación</title>
+    <link rel="stylesheet" href="stylesheet.css">
+
+</head>
+
+<body>
+    <header>
+        <h1>Simulación</h1>
+        <h2>Portfolio</h2>
+        <h1>Carlos Marqués García</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Música</h2>
+            <div id="imagenAn">
+                <img alt="" width="300" height="300" src="imagenes/guitarra.jpg">
+            </div>
+            <div id="audio-player">
+                <select id="video-select">
+                    <option value="">Audio 1</option>
+                    <option value="audio/audio3.mp3">Audio 2</option>
+                </select>
+                <audio controls id="audio-element"></audio>
+                <div id="audio-info">
+                    <p>Duración total: <span id="duration"></span></p>
+                    <p>Tiempo restante: <span id="time-remaining"></span></p>
+                    <p>Fichero reproduciéndose: <span id="current-file"></span></p>
+                    <p>Estado de la reproducción: <span id="playback-state"></span></p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Cartas y Lectura</h2>
+            <div id="imagenAn">
+                <img alt="" width="300" height="300" src="imagenes/libros.jpg">
+            </div>
+        </section>
+
+    </main>
+
+    <footer>Copyright &copy; 2024</footer>
+</body>
+
+</html>
