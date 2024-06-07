@@ -17,93 +17,132 @@
     </header>
     <main>
         <section>
-            <h2>Música</h2>
+            <h2>buble-shooter</h2>
             <div class="video-text-container">
                 <figure>
                     <video width="560" height="320" controls>
                         <source src="T1/Bubbleshooter.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>buble-shooter sencillo (lanzador de bolas con velocidad constante)</p>
             </div>
         </section>
+
         <section>
-            <h2>Música</h2>
+            <h2>Velocidad constante y aceleración entre 2 puntos</h2>
             <div class="video-text-container">
                 <figure>
                     <video width="560" height="320" controls>
                         <source src="T1/MontañaRusa.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>Simular el movimiento de una partícula que se mueve a una velocidad
+                    entre dos puntos y vuelve con una aceleración constante
+                    debido a la gravedad, como una montaña rusa.</p>
+                </p>
+                <p>vmedia en un intervalo = ∆x/∆t</p>
+                <p>x += vmedia ∗ ∆t.</p>
+                <p>velocidad inicial u</p>
+                <p>∆t = t − 0; </p>
+                <p>a = (v-u)/t</p>
+                <p>v = u + a ∗ ∆t</p>
+                <p>x = u*t + 1/2 * a*t^2</p>
+                </p>
+
             </div>
         </section>
+
         <section>
-            <h2>Música</h2>
+            <h2>Orbitación</h2>
             <div class="video-text-container">
                 <figure>
                     <video width="560" height="320" controls>
                         <source src="T1/Orbitación.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>Simula el movimiento de una bola alrededor de un punto
+                    situado a una distancia r de la bola. Da una vuelta por segundo.</p>
+                <p> Periodo (T): Tiempo en recorrer una onda completa una función periódica.</p>
+                <p> Frecuencia f = 1/T</p>
+                <p> Velocidad angular w = 2πf = 2π/T</p>
+                <p> w(t) = ∆angulo/∆t</p>
+
+                <p> Posición: </p>
+                <p> x = r ∗ cos(w ∗ t), </p>
+                <p> y = r ∗ sin(w ∗ t)</p>
             </div>
         </section>
+
         <section>
-            <h2>Música</h2>
+            <h2>Osciladores</h2>
             <div class="video-text-container">
                 <figure>
                     <video width="560" height="320" controls>
                         <source src="T1/PartículaFunciónSinusoidalA0.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>Este oscilador utiliza una función que devuelve una onda que va disminuyendo la y conforme avanza en
+                    la x mediante la función: </p>
+                <p> y = sin(x) ∗ exp(−0.002x) </p>
             </div>
-        </section>
-        <section>
-            <h2>Música</h2>
+
             <div class="video-text-container">
                 <figure>
                     <video width="560" height="320" controls>
                         <source src="T1/PartículaFunciónDerivaSinuidal.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>Este oscilador utiliza una función que devuelve una onda regida por dos frecuencias diferentes: </p>
+                <p> y = 0.5sin(3x) + 0.5sin(3.5x) </p>
             </div>
         </section>
         <section>
-            <h2>Música</h2>
+            <h2>Tiro parabólico</h2>
             <div class="video-text-container">
                 <figure>
                     <video width="560" height="320" controls>
                         <source src="T1/Tiro parabólico.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>Simula un tiro parabólico (velocidad inicial v, gravedad g y masa m)
+                    con el método de Euler.</p>
             </div>
         </section>
+
         <section>
-            <h2>Música</h2>
+            <h2>Fuente de Partículas</h2>
             <div class="video-text-container">
                 <figure>
                     <video width="560" height="320" controls>
                         <source src="T2/FuentePartículas.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>Implementación de fuente de partículas en unos ángulos preestablecidos y aplicándoles un peso para que caigan.</p>
             </div>
         </section>
+
         <section>
-            <h2>Música</h2>
+            <h2>Partícula flotante</h2>
             <div class="video-text-container">
                 <figure>
                     <video width="560" height="320" controls>
                         <source src="T2/HieloFlotando.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>Simula una partícula flotando en un líquido con densidad ρ y gravedad g, teniendo en cuenta el volumen sumergido de la partícula</p>
+                <p>Estabilidad: Centro de gravedad/masas y de flotación.</p>
+                <p>Fuerza de flotación: FB = ρ*g*Vs</p>
+                <p>ρ = densidad</p>
+                <p>Vs = Vol.sumergido</p>
+                <p>Vs−totalmente−sumergido = 4 ∗ PI ∗ radius ∗ radius ∗ radius/3</p>
+                <p>Parcialmente sumergido:</p>
+                <p>h = location.y + radius - height/2;</p>
+                <p>a = sqrt (2 * h * radius - h * h);</p>
+                <p>Vs = (3 * a*a + h*h) * PI * h / 6;</p>
+                
             </div>
         </section>
+
         <section>
             <h2>Simulación física de una partícula colgando de otra fija</h2>
             <div class="video-text-container">
