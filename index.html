@@ -78,7 +78,7 @@
             <div class="video-text-container">
                 <figure>
                     <video width="560" height="320" controls>
-                        <source src="T1/PartículaFunciónSinusoidalA0.mp4" type="video/mp4">
+                        <source src="T1/PartículaFunción sinusoidalA0.mp4" type="video/mp4">
                     </video>
                 </figure>
                 <p>Este oscilador utiliza una función que devuelve una onda que va disminuyendo la y conforme avanza en
@@ -117,7 +117,8 @@
                         <source src="T2/FuentePartículas.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>Implementación de fuente de partículas en unos ángulos preestablecidos y aplicándoles un peso para que caigan.</p>
+                <p>Implementación de fuente de partículas en unos ángulos preestablecidos y aplicándoles un peso para
+                    que caigan.</p>
             </div>
         </section>
 
@@ -129,7 +130,8 @@
                         <source src="T2/HieloFlotando.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>Simula una partícula flotando en un líquido con densidad ρ y gravedad g, teniendo en cuenta el volumen sumergido de la partícula</p>
+                <p>Simula una partícula flotando en un líquido con densidad ρ y gravedad g, teniendo en cuenta el
+                    volumen sumergido de la partícula</p>
                 <p>Estabilidad: Centro de gravedad/masas y de flotación.</p>
                 <p>Fuerza de flotación: FB = ρ*g*Vs</p>
                 <p>ρ = densidad</p>
@@ -139,19 +141,35 @@
                 <p>h = location.y + radius - height/2;</p>
                 <p>a = sqrt (2 * h * radius - h * h);</p>
                 <p>Vs = (3 * a*a + h*h) * PI * h / 6;</p>
-                
+
             </div>
         </section>
 
         <section>
             <h2>Simulación física de una partícula colgando de otra fija</h2>
             <div class="video-text-container">
+                <p> Simulación física de una partícula colgando de otra fija, para ello se calcula la fuerza de
+                    elasticidad</p>
+                <p> //L-L0
+                <p> float elongation = PVector.dist(_pos2, _pos1) - _l0; </p>
+                <p> PVector direction = PVector.sub(_pos2, _pos1).normalize();</p>
+
+                <p> FE = Ke*elongation;</p>
+
+                <p> F = direction.mult(FE);</p>
+
+                <p> además se le aplica rozamiento y gravedad.</p>
+                <p>Debido al costo de calcular a cada momento esto, hay diferentes métodos para en un lapso de tiempo
+                    especificado (timestep) aproximar el cálculo.</p>
+
                 <figure>
                     <video width="560" height="320" controls>
                         <source src="P1/EulerExplícito.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p> _a = calculateAcceleration(_s, _v);</p>
+                <p> s(t+h) = s(t) + h*v(t)</p>
+                <p> v(t+h) = v(t) + h*a(s(t),v(t))</p>
             </div>
             <div class="video-text-container">
                 <figure>
@@ -159,7 +177,9 @@
                         <source src="P1/EulerSimpléctico.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p> _a = calculateAcceleration(_s, _v);</p>
+                <p> v(t+h) = v(t) + h*a(s(t),v(t))</p>
+                <p> s(t+h) = s(t) + h*v(t)</p>
             </div>
             <div class="video-text-container">
                 <figure>
@@ -167,7 +187,20 @@
                         <source src="P1/Heun.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>_a = calculateAcceleration(_s, _v);</p>
+
+                <p> Calculo de la velocidad en el punto medio</p>
+                <p> PVector v12 = PVector.add(_v, PVector.mult(_a, _timeStep * 0.5));</p>
+
+                <p> Calculo de la posicion en el punto medio</p>
+                <p> PVector s12 = PVector.add(_s, PVector.mult(_v, _timeStep * 0.5));</p>
+
+                <p> Calculo de la aceleracion en el punto medio</p>
+                <p> PVector a12 = calculateAcceleration(s12, v12);</p>
+
+                <p> Actualizamos la velocidad y la posicion</p>
+                <p> _v.add(PVector.mult(a12, _timeStep));</p>
+                <p> _s.add(PVector.mult(v12, _timeStep));</p>
             </div>
             <div class="video-text-container">
                 <figure>
@@ -175,23 +208,50 @@
                         <source src="P1/RK2.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p> _a = calculateAcceleration(_s, _v);</p>
+
+                <p> Primer paso (k1)</p>
+                <p> k1v = h * a(s, v)</p>
+                <p> k1s = h * v</p>
+
+                <p> Segundo paso (k2)</p>
+                <p> k2v = h*a(s + k1s/2, v + k1v/2)</p>
+                <p> k2s = h*(v + k1v/2)</p>
+
+                <p> Actualización de la velocidad y la posición</p>
+                <p> v(t+h) = v(t) + k2v</p>
+                <p> s(t+h) = s(t) + k2s</p>
             </div>
-            <div class="video-text-container">
-                <figure>
-                    <video width="560" height="320" controls>
-                        <source src="P1/RK2estable.mp4" type="video/mp4">
-                    </video>
-                </figure>
-                <p>EHSSSSSSS</p>
-            </div>
+
             <div class="video-text-container">
                 <figure>
                     <video width="560" height="320" controls>
                         <source src="P1/RK4.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>_a = calculateAcceleration(_s, _v);</p>
+
+                <p> Primer paso (k1)</p>
+                <p> k1v = h * a(s, v)</p>
+                <p> k1s = h * v</p>
+
+                <p> Segundo paso (k2)</p>
+                <p> k2v = h*a(s + k1s/2, v + k1v/2)</p>
+                <p> k2s = h*(v + k1v/2)</p>
+
+
+                <p> Tercer paso (k3)</p>
+                <p> k3v = h*a(s + k2s/2, v + k2v/2)</p>
+                <p> k3s = h*(v + k2v/2)</p>
+
+
+                <p> Cuarto paso (k4)</p>
+                <p> k4v = h*a(s + k3s, v + k3v)</p>
+                <p> k4s = h*(v + k3v)</p>
+
+                <p> Actualización de la velocidad y posición</p>
+                <p> v(t+h) = v(t) + 1/6 * (k1v + 2*k2v + 2*k3v + k4v)</p>
+                <p> s(t+h) = s(t) + 1/6 * (k1s + 2*k2s + 2*k3s + k4s)</p>
             </div>
         </section>
         <section>
@@ -202,7 +262,8 @@
                         <source src="Humo.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>Se crea humo gracias a partículas con textura que se generan con velocidades con direcciones dentro
+                    de un rango que son afectadas por la gravedad, y el viento.</p>
             </div>
         </section>
         <section>
@@ -213,18 +274,26 @@
                         <source src="P3/Colisión.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>Calculando velocidades en cada lapso de tiempo establecido (timestep) se crea un sistema de
+                    colisiones plano-partícula y partícula-partícula, que hacen posible la creación de un billar.</p>
             </div>
         </section>
         <section>
             <h2>Optimización de la detección de colisiones</h2>
             <div class="video-text-container">
+                <p>Debido al alto coste de calcular la posible interacción entre todas las partículas, que impediría la
+                    escalabilidad del sistema de colisiones, existen diferentes métodos que lo optimizan:</p>
                 <figure>
                     <video width="560" height="320" controls>
                         <source src="P3/GRID.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>El coste de la colisión de partículas cuando se usa grid es muchísimo menor O(log(N)), pues al estar
+                    subdividida </p>
+                <p> la pantalla en celdas, cada partícula solo es evaluada respecto a las partículas de las celdas
+                    vecinas, obtenidas</p>
+                <p> al recorrer la matriz de celdas, siendo así muchísimo menor el número de partículas con las que se
+                    debe evaluar la posible colisión.</p>
             </div>
             <div class="video-text-container">
                 <figure>
@@ -232,18 +301,28 @@
                         <source src="P3/HASH.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>El coste computacional cuando se usa hash es aún menor, con una complejidad similar a la del grid.
+                </p>
+                <p> Además de la subdivisión de la pantalla, la función de hash asigna directamente cada partícula a una
+                </p>
+                <p> celda específica conocida, lo que agiliza la obtención de las celdas vecinas, resultando en un coste
+                </p>
+                <p> computacional más bajo con la configuración correcta de tamaño de celda y tamaño de tabla hash.
+                </p>
             </div>
         </section>
         <section>
-            <h2>Música</h2>
+            <h2>Portería con malla deformable y destruible</h2>
             <div class="video-text-container">
+                <p>Se observa el comportamiento de una pelota de futbol que impacta con una fuerza sobre una malla cuya
+                    deformación/desgarro está regida por tres disposiciones de muelles mezcladas structural, shear, bend
+                </p>
                 <figure>
                     <video width="560" height="320" controls>
                         <source src="P4/DeformarMalla.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>La malla se deforma</p>
             </div>
             <div class="video-text-container">
                 <figure>
@@ -251,59 +330,65 @@
                         <source src="P4/DestrucciónMalla.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
+                <p>La malla se desgarra al recibir una fuerza mayor a la que soporta</p>
             </div>
         </section>
         <section>
-            <h2>Música</h2>
+            <h2>Malla deformada por mapa de alturas</h2>
             <div class="video-text-container">
-                <figure>
-                    <video width="560" height="320" controls>
-                        <source src="P4/amplitud.mp4" type="video/mp4">
-                    </video>
-                </figure>
-                <p>EHSSSSSSS</p>
-            </div>
+                <p>Deformación de malla mediante el posicionamiento de los vértices de esta a una altura determinada por
+                    el mapa de alturas, </p>
+                <p> este es modificado según diferentes funciones de ondas lineales, radiales y Gerstner para simular
+                    diferentes tipos de oleajes y goteos</p>
+                    <p> Esas funciones además están regidas por amplitudes, longitudes de onda y velocidades preestablecidas</p>
+                    <p></p><p></p><p></p><p></p>
             <div class="video-text-container">
-                <figure>
-                    <video width="560" height="320" controls>
-                        <source src="P4/longitudonda.mp4" type="video/mp4">
-                    </video>
-                </figure>
-                <p>EHSSSSSSS</p>
-            </div>
-            <div class="video-text-container">
-                <figure>
-                    <video width="560" height="320" controls>
-                        <source src="P4/velocidad.mp4" type="video/mp4">
-                    </video>
-                </figure>
-                <p>EHSSSSSSS</p>
-            </div>
-            <div class="video-text-container">
+                <p>Simulación de gotas de agua caen y generan una pequeña onda radial</p>
                 <figure>
                     <video width="560" height="320" controls>
                         <source src="P4/gotas.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
             </div>
             <div class="video-text-container">
+                <p>Simulación un mar agitado</p>
                 <figure>
                     <video width="560" height="320" controls>
                         <source src="P4/marintranquilo.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
             </div>
             <div class="video-text-container">
+                <p>Simulación de un mar tranquilo</p>
                 <figure>
                     <video width="560" height="320" controls>
                         <source src="P4/martranquilo.mp4" type="video/mp4">
                     </video>
                 </figure>
-                <p>EHSSSSSSS</p>
             </div>
+            <p>Amplitud modificada</p>
+            <figure>
+                <video width="560" height="320" controls>
+                    <source src="P4/amplitud.mp4" type="video/mp4">
+                </video>
+            </figure>
+        </div>
+        <div class="video-text-container">
+            <p>Longitud de onda modificada</p>
+            <figure>
+                <video width="560" height="320" controls>
+                    <source src="P4/longitudonda.mp4" type="video/mp4">
+                </video>
+            </figure>
+        </div>
+        <div class="video-text-container">
+            <p>Velocidad modificada</p>
+            <figure>    
+                <video width="560" height="320" controls>
+                    <source src="P4/velocidad.mp4" type="video/mp4">
+                </video>
+            </figure>
+        </div>
         </section>
     </main>
     <footer>Copyright &copy; 2024</footer>
